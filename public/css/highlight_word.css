@@ -1,0 +1,83 @@
+header h1 {
+    font-size: 70px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #0b1657, #010716);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  p.line-1.anim-typewriter {
+    background-color: rgb(23, 34, 239);
+    padding: 10px 20px;
+    border: 1px solid #11e1b1;
+    margin: 10px 0;
+}
+
+.hwt-container {
+	display: inline-block;
+	position: relative;
+	overflow: hidden !important;
+	-webkit-text-size-adjust: none !important;
+}
+
+.hwt-backdrop {
+	position: absolute !important;
+	top: 0 !important;
+	right: -99px !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	padding-right: 99px !important;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+
+.hwt-highlights {
+	width: auto !important;
+	height: auto !important;
+	border-color: transparent !important;
+	white-space: pre-wrap !important;
+	word-wrap: break-word !important;
+	color: transparent !important;
+	overflow: hidden !important;
+}
+
+.hwt-input {
+	display: block !important;
+	position: relative !important;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	font: inherit;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+
+
+.hwt-content {
+	border: 1px solid;
+	background: none transparent !important;
+}
+
+.hwt-content mark {
+	padding: 0 !important;
+	color: inherit;
+}
+.hwt-content mark.spam-category-shady {
+    background-color: #6479ff; /* pink-300 */
+}
+
+.hwt-content mark.spam-category-money {
+    background-color: #d08c5f; /* yellow-300 */
+}
+
+.hwt-content mark.spam-category-urgency {
+    background-color: #f2ff3f; /* red-400 */
+}
+
+.hwt-content mark.spam-category-overpromise {
+    background-color: #191e59; /* orange-300 */
+}
+
+.hwt-content mark.spam-category-unnatural {
+    background-color: #de1a3e; /* grey-300 */
+}
