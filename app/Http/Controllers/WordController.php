@@ -7,6 +7,13 @@ use DataTables;
 use DB;
 use Illuminate\Http\Request;
 
+
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel\toCollection;
+use App\Imports\ImportUser;
+use App\Exports\ExportUser;
+use Illuminate\Support\Collection;
+
 class WordController extends Controller
 {
      /**
@@ -95,5 +102,25 @@ class WordController extends Controller
         return redirect('word')->with('status','Word Updated Successfully');
 
     }
+
+    public function importView(Request $request){
+        return view('importFile')->with('sucess');
+    }
+
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'required|mimes:csv,xlsx',
+        ]);
+        $convertedArrayData = Excel::toCollection(collect([]), $request->file('file'));
+        // dd($convertedArrayData->toArray());
+        $arr= Excel::import(new ImportUser, $request->file('file')->store('files'));
+        // dd($arr);
+        return back()->with('success', 'CSV file imported successfully');
+    }
+
+    public function exportUsers(Request $request){
+        return Excel::download(new ExportUser, 'users.xlsx');
+    }
+
 
 }

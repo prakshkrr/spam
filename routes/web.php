@@ -49,5 +49,10 @@ Auth::routes();
     // SpamChecker for user
     // Route::get('spam_checker_user', [SpamcheckerController::class, 'index'])->name('dashboard.index');
     Route::get('spam_checker_user', [SpamController::class, 'dashboard_index'])->name('layout.index');
+
+
+    Route::get('/file-import',[WordController::class,'importView'])->name('import-view');
+    Route::post('/import',[WordController::class,'import'])->name('import');
+    Route::get('/export-users',[WordController::class,'exportUsers'])->name('export-users');
 });
 
