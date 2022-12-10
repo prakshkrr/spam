@@ -115,7 +115,7 @@ class WordController extends Controller
         // dd($convertedArrayData->toArray());
         $arr= Excel::import(new ImportUser, $request->file('file')->store('files'));
         // dd($arr);
-        return back()->with('success', 'CSV file imported successfully');
+        return redirect()->back()->with('success', 'CSV file imported successfully');
     }
 
     public function exportUsers(Request $request){

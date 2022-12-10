@@ -3,8 +3,7 @@
 @section('content_dashboard_admin_user')
     {{-- ALL SPAM CHECKER CONTENT --}}
     <div class="col-12 col-md-12 white-box-1 px-5 py-4">
-        <div class="m-4">
-          
+        <div class="m-10">    
         <article class="article-container">
             <div class="container text-center">
                 <header>
@@ -17,48 +16,10 @@
                     Copy/paste an email message to detect and remove spam words</a>.
                 </p>
             </div>
-             <div class="container-fluid">
-                 <!-- Button HTML (to Trigger Modal) -->
-            <a href="#myModal" role="button" class="btn btn-primary " data-bs-toggle="modal">import/Export</a>
-        
-            <!-- Modal HTML -->
-            <div id="myModal" class="modal fade" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Import/Export Data</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            @if (\Session::has('success'))
-                            <div class="alert alert-success">
-                                <ul>
-                                    <li>{!! \Session::get('success') !!}</li>
-                                </ul>
-                            </div>
-                            @endif
-                            <div class="container mt-5 text-center">
-                              
-                                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-group mb-4">
-                                        <div class="custom-file text-left">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                            <input type="file" name="file" class="custom-file-label"/>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary">Import Users</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <a class="btn btn-success" href="{{ route('export-users') }}">Export Users</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-right">
+                <!-- Button HTML (to Trigger Modal) -->
+                <a href="#import" role="button" class="btn btn-primary" data-bs-toggle="modal">import/Export</a>
             </div>
-             </div>
             {{-- Main Spam checker content  --}}
             <section class="container mt-4 mb-5">
                 <div class="mx-auto shadow-default border-radius-lg" style="border: 1px solid #e6e7eb">
@@ -100,6 +61,49 @@
         </article>
     </div>
     {{-- END MAIN CONTENT --}}
+
+      <!-- Modal HTML -->
+      <div id="import" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import/Export Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @if (session('success'))
+                    <div class="col-sm-12">
+                        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                    </div>
+                   @endif
+                    <div class="container mt-5 text-center">
+                      
+                        <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group mb-4">
+                                <div class="custom-file text-left">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <input type="file" name="file" class="custom-file-label"/>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Import Data</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a class="btn btn-success" href="{{ route('export-users') }}">Export Data</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal HTML -->
 
     <script type="text/javascript">
         var storeData = [];
