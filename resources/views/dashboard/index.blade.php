@@ -1,6 +1,16 @@
 @extends('layout.master')
 
 @section('content_dashboard_admin_user')
+@if (session('success'))
+<div class="col-sm-12">
+    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+</div>
+@endif
     {{-- ALL SPAM CHECKER CONTENT --}}
     <div class="col-12 col-md-12 white-box-1 px-5 py-4">
         <div class="m-10">    
@@ -71,16 +81,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    @if (session('success'))
-                    <div class="col-sm-12">
-                        <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                        </div>
-                    </div>
-                   @endif
+             
                     <div class="container mt-5 text-center">
                       
                         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">

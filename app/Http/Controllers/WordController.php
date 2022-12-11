@@ -70,7 +70,7 @@ class WordController extends Controller
         $words->category_id = $request->category_id;
         $words->highlight= $request->wordname;
         $words->save();
-        return redirect('word')->with('status', 'Word updated successfully');
+        return redirect()->back()->with('status', 'Word updated successfully');
     }
     /**
      * Show the form for editing the specified resource.
@@ -99,8 +99,7 @@ class WordController extends Controller
         $words->wordname = $request->input('wordname');
         $words->category_id = $request->input('category_id');
         $words->update();
-        return redirect('word')->with('status','Word Updated Successfully');
-
+        return redirect()->back()->with('status','Word Updated Successfully');
     }
 
     public function importView(Request $request){

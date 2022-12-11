@@ -94,7 +94,7 @@ class SpamController extends Controller
     
         $post->color =$request->color;
         $post->save();
-        return redirect('category')->with('response', 'Category save successfully');
+        return redirect()->back()->with('response', 'Category save successfully');
     }
 
     /**
@@ -133,7 +133,7 @@ class SpamController extends Controller
         }
         $post->color = $request->input('color');
         $post->update();
-        return redirect('category')->with('status','Category Updated Successfully');
+        return redirect()->back()->with('status','Category Updated Successfully');
         
     }
 
