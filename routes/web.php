@@ -54,5 +54,8 @@ Auth::routes();
     Route::get('/file-import',[WordController::class,'importView'])->name('import-view');
     Route::post('/import',[WordController::class,'import'])->name('import');
     Route::get('/export-users',[WordController::class,'exportUsers'])->name('export-users');
+
+    Route::get('/sendemail', [WordController::class, 'index1']);
+    Route::Post('/sendemail/send', [WordController::class, 'store1']);
 });
 

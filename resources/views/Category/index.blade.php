@@ -1,12 +1,12 @@
 @extends('layout.master')
 @section('category_content')
-    <div class="container">
+    <div class="container-fluid">
         <h1>Spam Checker categories</h1>
         <div class="btn theme-bg-color btn-labeled float-right">
             <a class="btn btn-outline-success" href="{{ route('Category.create') }}">Add</a>
         </div>
         <div class="container">
-            <table class="table table-bordered data-table">
+            <table class="table table-bordered border-primary data-table">
                 <thead>
                     <tr>
                         <th>Sr.No</th>
@@ -35,7 +35,7 @@
                     },
                     {
                         data: 'catname',
-                        name: 'name'
+                        name: 'catname'
                     },
                     {
                         data: 'image',
@@ -46,7 +46,7 @@
                     },
                     {
                         data: 'color',
-                        name: 'name'
+                        name: 'color'
                     },
                     {
                         data: 'action',

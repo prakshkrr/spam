@@ -28,7 +28,8 @@
             </div>
             <div class="text-right">
                 <!-- Button HTML (to Trigger Modal) -->
-                <a href="#import" role="button" class="btn btn-primary" data-bs-toggle="modal">import/Export</a>
+                <a href="#import" role="button" class="btn btn-outline-primary" data-bs-toggle="modal">import/Export</a>
+                <a href="#sendmail" role="button" class="btn btn-outline-primary" data-bs-toggle="modal">Add suggession</a>
             </div>
             {{-- Main Spam checker content  --}}
             <section class="container mt-4 mb-5">
@@ -72,7 +73,7 @@
     </div>
     {{-- END MAIN CONTENT --}}
 
-      <!-- Modal HTML -->
+      <!-- Modal HTML for import/export data-->
       <div id="import" class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -92,19 +93,73 @@
                                     <input type="file" name="file" class="custom-file-label"/>
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Import Data</button>
+                            <button class="btn btn-outline-primary">Import Data</button>
+                            <a class="btn btn-outline-success" href="{{ route('export-users') }}">Export Data</a>
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a class="btn btn-success" href="{{ route('export-users') }}">Export Data</a>
-                    
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- Modal HTML -->
+
+          <!-- Modal HTML for send mail -->
+          <div id="sendmail" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Enter Your Suggestion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                 
+                        <div class="container mt-5 text-center">
+                          
+                            <div class="container box">
+                                @if (count($errors) > 0)
+                                 <div class="alert alert-danger">
+                                  <button type="button" class="close" data-dismiss="alert">×</button>
+                                  <ul>
+                                   @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                   @endforeach
+                                  </ul>
+                                 </div>
+                                @endif
+                                @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-block">
+                                 <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                </div>
+                                @endif
+                                <form method="post" action="{{url('sendemail/send')}}">
+                                 {{ csrf_field() }}
+                                 <div class="form-group text-left">
+                                     <label>Enter Your Email</label>
+                                     <input type="text" name="email" class="form-control" value="" />
+                                 </div>
+                                 <div class="form-group text-left">
+                                     <label>Enter Your Subject</label>
+                                     <input type="text" name="name" class="form-control" value="" />
+                                 </div>
+                                 <div class="form-group text-left">
+                                  <label>Enter Your Message</label>
+                                  <textarea name="message" class="form-control"></textarea>
+                                 </div>
+                                 <div class="form-group ">
+                                  <input type="submit" name="send" class="btn btn-outline-info" value="Send" />
+                                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                 </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal HTML -->
 
     <script type="text/javascript">
         var storeData = [];

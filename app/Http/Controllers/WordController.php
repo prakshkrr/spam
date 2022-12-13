@@ -5,6 +5,9 @@ use App\Models\Words;
 use App\Models\Categories;
 use DataTables;
 use DB;
+
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 
@@ -122,4 +125,21 @@ class WordController extends Controller
     }
 
 
+    public function index1()
+    {
+        return view('send_email');
+    }
+    public function  store1 (Request $request)
+    {     
+        $name = $request->name;
+        $email = $request->email;
+        $textmessage = $request->message;
+
+        $data = array('name' => $name, 'email' => $email, 'textmessage' => $textmessage);
+        Mail::send('mail', $data, function ($message)  use ($name, $email) {
+            $message->to('prakash.shrivastava@innvonix.com')->subject($name);
+            $message->from($email);
+        });
+        return back()->with('success', 'Successfully sent the email');     
+        }
 }

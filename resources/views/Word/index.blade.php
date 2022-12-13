@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('word_content')
-    <div class="container pt-3">
+    <div class="container-fluid">
         <h1>Spam Checker Words</h1>
         <div class="btn theme-bg-color btn-labeled float-right">
             <a class="btn btn-outline-success" href="{{ route('Word.create') }}">Add</a>
@@ -16,21 +16,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($word as $word)
-                        <tr>
-                            <td>{{ $loop->iteration }} </td>
-                            <td>{{ $word->categories->catname }} </td>
-                            <td>{{ $word->wordname }} </td>
-                            <td>
-                                <div class="btn-group btn-group-xs">
-                                    <a href="{{ route('Word.edit',$word->id) }}" class="edit btn btn-outline-primary btn-sm">edit</a>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach --}}
                 </tbody>
             </table>
-
         </div>
     </div>
 
