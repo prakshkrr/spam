@@ -40,19 +40,9 @@ class SpamController extends Controller
                     ->select('wordname','highlight','categories.catname as category','categories.color', 'categories.image')
                     ->leftJoin('categories','categories.id','words.category_id')
                     ->get()->toArray();
+                    // dd($words);
         $words_json = json_encode($words); 
-        // $data = json_decode($words_json, true); 
-        // dd($words_json);
         return view('dashboard.index',compact('words_json'));
-    }
-
-    public function search(Request $request) {
-        $words =DB::table('words')
-                    ->select('wordname','highlight','categories.catname','categories.color', 'categories.image')
-                    ->leftJoin('categories','categories.id','words.category_id')
-                    ->get();
-        // dd($words);
-        return response()->json($words);
     }
 
     /**

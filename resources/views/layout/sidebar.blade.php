@@ -57,8 +57,8 @@
                         {{-- logout --}}
                     @else
                         <li
-                            class="nav-item {{ request()->is('/spam_checker*') || request()->is('spam_checker*') ? 'active menu-open' : '' }}">
-                            <a href="{{ url('/spam_checker') }}" class="nav-link">
+                            class="nav-item {{ request()->is('/spam_checker_user*') || request()->is('spam_checker*') ? 'active menu-open' : '' }}">
+                            <a href="{{ url('/spam_checker_user') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard

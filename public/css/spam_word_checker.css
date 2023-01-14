@@ -13,7 +13,13 @@ p.line-1.anim-typewriter {
     border: 1px solid #cccccc;
     margin: 10px 0;
 }
-
+footer {
+    bottom: 0;
+    left:0;
+    position: fixed;
+    margin: 0;
+    width: 100%;
+}
 #spam-check-main-textarea {
     border-color: transparent;
     outline: none;

@@ -24,37 +24,35 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::group(["middleware" => ["admin"]], function(){
 
-    Route::group(["middleware" => ["auth"]], function(){
-
+    // SpamChecker for Admin
+    Route::get('spam_checker', [SpamController::class, 'dashboard_index'])->name('layout.index');
+    Route::get('search', [SpamController::class, 'search']);
     // Category
     Route::get('category', [SpamController::class, 'index'])->name('Category.index');
     Route::get('create_category', [SpamController::class, 'create'])->name('Category.create');
     Route::post('store_category', [SpamController::class, 'store']);
     Route::get('edit/{id}', [SpamController::class, 'edit']);
     Route::put('update/{id}', [SpamController::class, 'update']);
-
-    // SpamChecker for Admin
-    Route::get('spam_checker', [SpamController::class, 'dashboard_index'])->name('layout.index');
-    Route::get('search', [SpamController::class, 'search']);
-
     // Word
     Route::get('word', [WordController::class, 'index'])->name('Word.index');
     Route::get('create_word', [WordController::class, 'create'])->name('Word.create');
     Route::post('store_word', [WordController::class, 'store']);
     Route::get('editw/{id}', [WordController::class, 'editw'])->name('Word.edit');
     Route::put('updatew/{id}', [WordController::class, 'updatew']);
-
-    // SpamChecker for user
-    // Route::get('spam_checker_user', [SpamcheckerController::class, 'index'])->name('dashboard.index');
-    Route::get('spam_checker_user', [SpamController::class, 'dashboard_index'])->name('layout.index');
-
-
+    //for import-export data
     Route::get('/file-import',[WordController::class,'importView'])->name('import-view');
     Route::post('/import',[WordController::class,'import'])->name('import');
     Route::get('/export-users',[WordController::class,'exportUsers'])->name('export-users');
+    });
 
+    Route::group(["middleware" => ["user"]], function(){
+    // SpamChecker for user
+    Route::get('spam_checker_user', [SpamController::class, 'dashboard_index'])->name('layout.index');
+    //for send email
     Route::get('/sendemail', [WordController::class, 'index1']);
     Route::Post('/sendemail/send', [WordController::class, 'store1']);
 });
